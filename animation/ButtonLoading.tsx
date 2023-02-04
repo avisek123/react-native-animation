@@ -1,5 +1,6 @@
 import {
   ActivityIndicator,
+  Dimensions,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -10,67 +11,59 @@ import {MotiView, useAnimationState, useDynamicAnimation} from 'moti';
 
 const ButtonLoading = () => {
   const [clicked, setClicked] = React.useState(false);
-  const animationState = useAnimationState({
-    from: {
-      opacity: 0,
-      scale: 0.9,
-    },
-    to: {
-      opacity: 1,
-      scale: 1.1,
-    },
-    expanded: {
-      scale: 2,
-    },
-    active: {
-      scale: 1.1,
-      opacity: 1,
-    },
-    nonActive: {
-      scale: 0.5,
-      opacity: 0.5,
-    },
-  });
+  const [isLoading, setIsLoading] = React.useState(false);
   const animation = useDynamicAnimation(() => {
     // optional function that returns your initial style
     return {
-      width: 200,
-      height: 60,
+      width: Dimensions.get('screen').width / 1.3,
+      height: 50,
+      backgroundColor: 'purple',
       borderRadius: 30,
     };
   });
-  const onPress = () => {
-    if (clicked === true) {
-      setClicked(false);
-      animationState.transitionTo('active');
-    } else {
-      setClicked(true);
-      animationState.transitionTo('nonActive');
+  const handleSubmit = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch('https://reqres.in/api/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: 'morpheus',
+          job: 'leader',
+        }),
+      });
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
     }
-    // if (animationState.current === 'to') {
-    //   animationState.transitionTo('active');
-    // }
   };
+  React.useEffect(() => {
+    if (!isLoading) {
+      setClicked(false);
+      animation.animateTo({
+        width: Dimensions.get('screen').width / 1.3,
+        height: 50,
+        borderRadius: 30,
+      });
+    }
+  }, [isLoading]);
+
   return (
     <View
       style={{
         flex: 1,
-        backgroundColor: '#000',
         justifyContent: 'center',
         alignContent: 'center',
         alignItems: 'center',
       }}>
-      {/* <MotiView
-          from={{
-            scale: 0.1,
-          }}
-          animate={{scale: 1}}
-          style={{
-            width: 100,
-            height: 100,
-            borderRadius: 10,
-            backgroundColor: '#fff',
-          }}></MotiView> */}
       <TouchableOpacity
         onPress={() => {
           if (clicked === true) {
@@ -81,13 +74,15 @@ const ButtonLoading = () => {
             setClicked(true);
             animation.animateTo({width: 60, height: 60, borderRadius: 30});
           }
+          handleSubmit();
         }}>
-        <MotiView
+        {/* <MotiView
           transition={{type: 'spring'}}
           style={{
-            width: 100,
-            height: 100,
+            width: Dimensions.get('screen').width / 1.3,
+            height: 50,
             backgroundColor: 'purple',
+            borderRadius: 30,
           }}
           state={animation}>
           {clicked ? (
@@ -98,6 +93,28 @@ const ButtonLoading = () => {
             />
           ) : (
             <Text style={{color: '#fff', textAlign: 'center', marginTop: 20}}>
+              {' '}
+              Login
+            </Text>
+          )}
+        </MotiView> */}
+        <MotiView
+          transition={{type: 'spring'}}
+          style={{
+            width: Dimensions.get('screen').width / 1.3,
+            height: 50,
+            backgroundColor: 'purple',
+            borderRadius: 30,
+          }}
+          state={animation}>
+          {clicked ? (
+            <ActivityIndicator
+              size={'large'}
+              color={'#fff'}
+              style={{marginTop: 10}}
+            />
+          ) : (
+            <Text style={{color: '#fff', textAlign: 'center', marginTop: 15}}>
               {' '}
               Login
             </Text>
