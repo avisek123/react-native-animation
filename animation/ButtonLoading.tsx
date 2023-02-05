@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {MotiView, useAnimationState, useDynamicAnimation} from 'moti';
+import {MotiView, useDynamicAnimation} from 'moti';
 
 const ButtonLoading = () => {
   const [clicked, setClicked] = React.useState(false);
@@ -15,7 +15,7 @@ const ButtonLoading = () => {
   const animation = useDynamicAnimation(() => {
     // optional function that returns your initial style
     return {
-      width: Dimensions.get('screen').width / 1.3,
+      width: Dimensions.get('screen').width / 1.2,
       height: 50,
       backgroundColor: 'purple',
       borderRadius: 30,
@@ -49,7 +49,7 @@ const ButtonLoading = () => {
     if (!isLoading) {
       setClicked(false);
       animation.animateTo({
-        width: Dimensions.get('screen').width / 1.3,
+        width: Dimensions.get('screen').width / 1.2,
         height: 50,
         borderRadius: 30,
       });
@@ -101,7 +101,7 @@ const ButtonLoading = () => {
         <MotiView
           transition={{type: 'spring'}}
           style={{
-            width: Dimensions.get('screen').width / 1.3,
+            width: Dimensions.get('screen').width / 1.2,
             height: 50,
             backgroundColor: 'purple',
             borderRadius: 30,
