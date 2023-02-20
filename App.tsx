@@ -1,14 +1,12 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import ButtonLoading from './animation/ButtonLoading';
-import GmailAnimation from './animation/GmailAnimation';
+import ChatDelete from './animation/chatDelete/ChatDelete';
 
 const App = () => {
   return (
-    <>
-      {/* <ButtonLoading /> */}
-      <GmailAnimation />
-    </>
+    <SafeAreaView style={{flex: 1}}>
+      <ChatDelete />
+    </SafeAreaView>
   );
 };
 
