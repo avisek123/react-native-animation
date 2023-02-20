@@ -184,7 +184,7 @@ const Swipable = (props: any) => {
             </TouchableOpacity>
           </View>
           <TouchableOpacity onPress={handlePress}>
-            <Text>Delete</Text>
+            {toggle ? <Text>Delete</Text> : <Text>Deleteing....</Text>}
           </TouchableOpacity>
           {toggle && (
             // <Text>HI</Text>

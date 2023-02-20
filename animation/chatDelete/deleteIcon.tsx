@@ -118,7 +118,7 @@ export default function DeleteIcon({onPress, color}: any) {
   return (
     <Pressable onPress={handlePress}>
       <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-        <Text>Delete</Text>
+        <Text>Delete55</Text>
       </View>
     </Pressable>
   );
