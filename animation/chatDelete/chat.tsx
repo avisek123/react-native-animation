@@ -10,10 +10,9 @@ const Chat = ({title, description, photo, time}: any) => {
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            alignItems: 'center',
+            // alignItems: 'center',
           }}>
           <Text style={[style.title, style.bold]}>{title}</Text>
-          <Text style={[style.subTitle, {fontSize: 12}]}>{time}</Text>
         </View>
 
         <Text style={[style.subTitle]} numberOfLines={1}>
@@ -29,16 +28,16 @@ export default Chat;
 const style = StyleSheet.create({
   row: {
     flexDirection: 'row',
-    alignItems: 'center',
+    // alignItems: 'center',
     paddingVertical: 10,
-    paddingHorizontal: 10,
+    // paddingHorizontal: 10,
     backgroundColor: 'white',
     overflow: 'hidden',
     height: '100%',
   },
   mailText: {
-    marginLeft: 15,
-    width: '80%',
+    // marginLeft: 15,
+    // width: '80%',
   },
   bold: {
     fontWeight: 'bold',

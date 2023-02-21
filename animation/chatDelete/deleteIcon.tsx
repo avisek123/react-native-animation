@@ -116,10 +116,10 @@ export default function DeleteIcon({onPress, color}: any) {
     );
   };
   return (
-    <Pressable onPress={handlePress}>
-      <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+    <TouchableOpacity onPress={handlePress}>
+      <View style={{alignSelf: 'flex-end'}}>
         <Text>Delete55</Text>
       </View>
-    </Pressable>
+    </TouchableOpacity>
   );
 }

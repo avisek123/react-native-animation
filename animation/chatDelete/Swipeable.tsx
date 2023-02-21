@@ -177,25 +177,31 @@ const Swipable = (props: any) => {
           <Animated.Text style={[styles.deleteMsg, animatedTextStyle]}>
             Your message has been deleted
           </Animated.Text>
-          <View style={styles.deleteIcon}>
-            {/* <DeleteIcon onPress={handlePress} /> */}
-            <TouchableOpacity onPress={handlePress}>
-              <Text>Delete</Text>
-            </TouchableOpacity>
-          </View>
-          <TouchableOpacity onPress={handlePress}>
-            {toggle ? <Text>Delete</Text> : <Text>Deleteing....</Text>}
-          </TouchableOpacity>
-          {toggle && (
-            // <Text>HI</Text>
-            <Animated.View style={[rotateStyle, {position: 'relative'}]}>
+          {/* <DeleteIcon onPress={handlePress} /> */}
+
+          {/* {toggle && ( */}
+          {/* // <Text>HI</Text> */}
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Animated.View style={[rotateStyle]}>
               <Animated.View style={animatedStyle}>
                 <Animated.View style={[scaleStyle]}>
                   {props.children}
                 </Animated.View>
               </Animated.View>
             </Animated.View>
-          )}
+            <TouchableOpacity
+              style={{
+                backgroundColor: 'red',
+                width: '20%',
+                marginTop: 10,
+                height: 30,
+                marginRight: 10,
+              }}
+              onPress={handlePress}>
+              {<Text>Delete</Text>}
+            </TouchableOpacity>
+          </View>
+          {/* )} */}
         </Animated.View>
       </PanGestureHandler>
     </Animated.View>
@@ -206,8 +212,9 @@ export default Swipable;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'lightblue',
-    height: CONVERSATION_ITEM_HEIGHT,
+    // backgroundColor: 'lightblue',
+    // height: CONVERSATION_ITEM_HEIGHT,
+    flex: 1,
   },
   deleteMsg: {
     position: 'absolute',
